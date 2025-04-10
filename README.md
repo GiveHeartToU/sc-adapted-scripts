@@ -14,10 +14,13 @@ Here you will find various utilities that have been tweaked, enhanced, or custom
 
 ## Contents
 
-[在这里简单列出仓库中包含的主要工具或脚本，并简要描述它们的功能。例如：]
+* `[Palantir/run_magic_imputation.py]`: [MemoryError]
 
-* `[工具/脚本名称 1]`: [简要描述其功能和你的主要修改]
+When using the `run_magic_imputation` function in Palantir with a large number of cells, I encountered memory issues during parallel processing. To address the "MemoryError: Unable to allocate 118. GiB for an array with shape (126007, 126007) and data type float64" issue (related to https://github.com/dpeerlab/Palantir/issues/34#issuecomment-632963651), I implemented a solution to output the parallel computation results to disk. This avoids the memory-intensive conversion between sparse and dense matrices in memory. This approach has been tested successfully with datasets of up to 500,000 cells, requiring approximately 200GB of disk space.
+The original function can be found at: https://github.com/dpeerlab/Palantir/blob/5fe3b46043dd32c30942ae297071bd9c71794ac1/src/palantir/utils.py#L586
+
 * ...
+
 
 ## Original Sources
 
